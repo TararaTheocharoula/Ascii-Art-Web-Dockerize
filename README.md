@@ -53,14 +53,14 @@ The application is ready to run with minimal setup and offers a modular, easily 
 1. **Clone the Repository:**
 
     ```bash
-    git clone <repository-url>
-    cd dockerized-web-server
+    git clone https://platform.zone01.gr/git/xkissas/ascii-art-web-dockerize.git
+    cd ascii-art-web-dockerize
     ```
 
 2. **Build the Docker Image And Verify the Build :**
 
     ```bash
-    docker build -f Dockerfile -t ascii-art-web-dockerize.
+    docker build -f Dockerfile -t ascii-art-web .
     ```
     ```bash
     docker images
@@ -69,7 +69,7 @@ The application is ready to run with minimal setup and offers a modular, easily 
 3. **Run the Container And Verify them:**
 
     ```bash
-    docker run -p 8080:8080 --detach --name ascii-art-web-dockerize ascii-art-web-dockerize
+    docker run -p 8080:8080 --detach --name ascii-art-web  ascii-art-web 
     ```
     ```bash
     docker ps -a
@@ -85,7 +85,7 @@ The application is ready to run with minimal setup and offers a modular, easily 
    
 5. **Inspect the container:**
     ```bash
-    docker exec -it ascii-art-web-dockerize /bin/sh
+    docker exec -it ascii-art-web /bin/sh
     ls -l
     exit
     ```
@@ -93,14 +93,14 @@ The application is ready to run with minimal setup and offers a modular, easily 
 6. **Evaluate Dockerfile metadata:**
    
     ```bash
-    docker inspect ascii-art-web-dockerize
+    docker inspect ascii-art-web 
     ```
 
 7. **Stop and Clean Up:**
    To stop the container:
 
     ```bash
-    docker stop ascii-art-web-dockerize
+    docker stop ascii-art-web 
     ```
 
    To remove unused objects:
