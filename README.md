@@ -57,17 +57,24 @@ The application is ready to run with minimal setup and offers a modular, easily 
     cd dockerized-web-server
     ```
 
-2. **Build the Docker Image:**
+2. **Build the Docker Image And Verify the Build :**
 
     ```bash
-    docker build -t web-server:latest .
+    docker build -f Dockerfile -t ascii-art-web-dockerize.
+    ```
+    ```bash
+    docker images
     ```
 
-3. **Run the Container:**
+3. **Run the Container And Verify them:**
 
     ```bash
-    docker run -d -p 8080:8080 --name web-server-container web-server:latest
+    docker run -p 8080:8080 --detach --name ascii-art-web-dockerize ascii-art-web-dockerize
     ```
+    ```bash
+    docker ps -a
+    ```
+
 
 4. **Access the Application:**
    Open your browser and navigate to:
@@ -75,18 +82,31 @@ The application is ready to run with minimal setup and offers a modular, easily 
    ```
    http://localhost:8080
    ```
+   
+5. **Inspect the container:**
+    ```bash
+    docker exec -it ascii-art-web-dockerize /bin/sh
+    ls -l
+    exit
+    ```
 
-5. **Stop and Clean Up:**
+6. **Evaluate Dockerfile metadata:**
+   
+    ```bash
+    docker inspect ascii-art-web-dockerize
+    ```
+
+7. **Stop and Clean Up:**
    To stop the container:
 
     ```bash
-    docker stop web-server-container
+    docker stop ascii-art-web-dockerize
     ```
 
    To remove unused objects:
 
     ```bash
-    docker system prune
+    docker system prune -f
     ```
 
 ---
@@ -119,51 +139,6 @@ The application is ready to run with minimal setup and offers a modular, easily 
 
 - **Garbage Collection:**
   - Encourages the use of `docker system prune` to clean up unused objects.
-
----
-
-## **Directory Structure**
-
-```bash
-dockerized-web-server/
-├── Dockerfile          # Dockerfile for building the web server image
-├── main.go             # Go web server code
-├── README.md           # Project documentation
-├── .dockerignore       # Excludes unnecessary files from the Docker image
-├── scripts/
-│   ├── cleanup.sh      # Script for automated garbage collection
-```
-
----
-
-## **Testing**
-
-### **Unit Testing (Go Code)**
-
-1. **Run Tests:**
-
-    ```bash
-    go test ./...
-    ```
-
-2. **Coverage:**
-   Includes tests for:
-   - HTTP request handling.
-   - Error response generation.
-
-### **Container Testing**
-
-1. **Run the Container and Test API Endpoints:**
-
-    ```bash
-    curl http://localhost:8080
-    ```
-
-2. **Verify Metadata:**
-
-    ```bash
-    docker inspect web-server:latest
-    ```
 
 ---
 
